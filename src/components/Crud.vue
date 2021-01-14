@@ -88,9 +88,19 @@ export default {
     },
     updateUser() {
       this.users.splice(this.selectedIndex, 1, `${this.user.surname}, ${this.user.name}`);
+      this.user.name = '';
+      this.user.surname = '';
+      this.selectedIndex = undefined;
+      const select = document.querySelector('.selected');
+      select.classList.remove('selected');
     },
     deleteUser() {
       this.users.splice(this.selectedIndex, 1);
+      this.user.name = '';
+      this.user.surname = '';
+      this.selectedIndex = undefined;
+      const select = document.querySelector('.selected');
+      select.classList.remove('selected');
     },
     select(evt, item, i) {
       if(!this.itemSelected) {
