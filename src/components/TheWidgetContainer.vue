@@ -1,10 +1,12 @@
 <template>
-  <el-tabs v-model="activeTab">
+  <el-tabs stretch v-model="activeTab">
     <el-tab-pane
       v-for="(value, key) in tabs"
       :key="key"
       :label="value"
-      :name="key">
+      :name="key"
+      lazy
+      >
       <component :is="componentName(value)" />
     </el-tab-pane>
   </el-tabs>
@@ -16,7 +18,7 @@ import Counter from './Counter'
 import Crud from './Crud'
 import FlightBooking from './FlightBooking'
 import TempatureConverter from './TempatureConverter'
-import Timer from './Timer'
+import FlightBookingEnhanced from './FlightBookingEnhanced'
 
 
 export default {
@@ -25,8 +27,9 @@ export default {
     Counter,
     Crud,
     FlightBooking,
+    FlightBookingEnhanced,
     TempatureConverter,
-    Timer,
+    Timer: () => import('./Timer'),
   },
 
   data() {
@@ -36,8 +39,9 @@ export default {
         counter: 'Counter',
         crud: 'CRUD',
         flight: 'Flight Booking',
+        flightBookingEnhanced: 'Flight Booking Enhanced',
         tempatureConverter: 'Tempature Converter',
-        timer: 'Timer'
+        timer: 'Timer',
       },
     }
   },
